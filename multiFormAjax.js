@@ -5,12 +5,13 @@ Version:1.0
 
 	function enviarFormulario() {
 
-		//Obttiene el formulario.
+		//Obttiene el/los formulario/s.
 		var formulario = document.querySelectorAll('.ajax');
 
 		//Establese un eventListener para cada formulario.
 		for (var i = 0; i < formulario.length; i++) {
 			
+			//Establece un flag para que algo ocurra una sola vez.
 			formulario[i].bandera = true;
 			formulario[i].onsubmit = function(e) {
 
@@ -21,7 +22,6 @@ Version:1.0
 			}
 		}
 
-
 		function enviar(esteForm){
 			
 			//Obtiene el DIV para la respuesta.
@@ -29,6 +29,7 @@ Version:1.0
 			
 			if (esteForm.bandera)
 			{
+				//Esto por si el titulo es el campo de respuesta.
 				esteForm.titulo = respuesta.innerHTML;
 				esteForm.bandera = false;
 			}
