@@ -1,2 +1,2 @@
-# widgets
-Mi first repository
+# scripts
+Códigos reutilizables.
