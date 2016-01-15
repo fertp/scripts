@@ -7,7 +7,8 @@
 
 		var desplegado = false,
 			barras = [],
-			trans = -10;
+			trans = -10,
+			anchoPantalla = 768;
 
 		function barrita(trans){
 			
@@ -77,7 +78,7 @@
 			
 		$("#boton, #menu").click(function () {
 
-			if (window.innerWidth <= 768) {
+			if (window.innerWidth <= anchoPantalla) {
 
 				for (var i = 0; i < 3; i++){
 					barras[i].velGiro *= -1;
