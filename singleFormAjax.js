@@ -2,6 +2,10 @@
 Fernando Torres
 Version:1.0
 */
+/*
+  Debe haber un form#formulario y un div#respuesta.
+  Necesita jQuery.
+*/
 
 	function enviarFormulario() {
 
@@ -20,7 +24,7 @@ Version:1.0
 			//Obtiene los datos serializados ("nombre=valor&nombre=valor")
 			var informacion = $(formulario).serialize();
 
-			//Envía el formulario usando AJAX
+			//Envía el formulario con el metodo POST usando AJAX
 			$.ajax({
 				type: 'POST',
 				url: $(formulario).attr('action'),
@@ -29,15 +33,12 @@ Version:1.0
 			.done(function(response) {
 
 				//Si se envió correctamente...
-				//Configura el estilo del DIV de respuesta, escribe el mensaje y lo muestra.
-				$(respuesta).css("color", "#080");
-				$(respuesta).css("background", "#cfc url(img/tick.svg) no-repeat");
-				$(respuesta).css("background-position", "right 15px center");
-				$(respuesta).css("background-size", "20px");
+				//Establece el estilo del DIV de respuesta, escribe el mensaje y lo muestra.
+				$(respuesta).attr('class', 'exito');
 				$(respuesta).text(response);
 				$(respuesta).slideDown('slow');
 
-				//Formatea los campos.
+				//Formatea los campos del form.
 				$('#nombre').val('');
 				$('#correo').val('');
 				$('#mensaje').val('');
@@ -46,20 +47,18 @@ Version:1.0
 			.fail(function(data) {
 
 				//Si no se envió.
-				//Configura el estilo del DIV y muestra el mensaje de error.
-				$(respuesta).css("color", "#900");
-				$(respuesta).css("background", "#fdd");
+				//Establece el estilo del DIV y muestra el mensaje de error.
+				$(respuesta).attr("class", "error");
 				$(respuesta).slideDown('slow');
 
 				//Establece el mensaje de error.
 				if (data.responseText !== '') {
 					$(respuesta).text(data.responseText);
 				} else {
-					$(respuesta).text('Ha ocurrido un error y el mensaje no pudo ser enviado.');
+					$(respuesta).text('Ha ocurrido un error, el mensaje no fue enviado.');
 				}
 
 			});
 
 		});
-
 	}
